@@ -1,24 +1,73 @@
 ---
 // Component Imports
-import Button from '../components/Button.astro';
+import { Image } from "@astrojs/image/components";
+import ContentWrapper from "../components/ContentWrapper";
+import ImageCard from "../components/ImageCard";
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Grace Escape Room</title>
+  </head>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
+  <body
+    class="w-screen min-h-screen overflow-x-hidden h-auto flex justify-center items-center"
+  >
+    <ContentWrapper
+      client:load
+      cardsContent={[
+        {
+          keyword: "Aninha",
+          password: "123",
+        },
+        {
+          keyword: "Aninha",
+          password: "123",
+        },
+        {
+          keyword: "Aninha",
+          password: "123",
+        },
+        {
+          keyword: "Aninha",
+          password: "123",
+        },
+      ]}
+      images={[
+        "/images/image1.jpg",
+        "/images/image2.jpg",
+        "/images/image3.jpg",
+        "/images/image4.jpg",
+      ]}
+    />
+  </body>
 </html>
+<style>
+  body {
+    background-image: url("/images/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: translateBackground 30s linear alternate infinite;
+  }
+  @keyframes translateBackground {
+    0% {
+      background-position: 0 0;
+      backdrop-filter: brightness(1);
+    }
+    50% {
+      background-position: 50% 0;
+      backdrop-filter: brightness(1.75);
+    }
+    100% {
+      background-position: 100% 0;
+      backdrop-filter: brightness(1);
+    }
+  }
+</style>
