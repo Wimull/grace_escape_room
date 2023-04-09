@@ -158,7 +158,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
                   id={`${id}-input`}
                   type="text"
                   ref={passwordInput}
-                  className={`pointer-events-auto w-full rounded text-black outline-none outline-2 outline-offset-2 focus-visible:outline-gray-200  ${
+                  className={`pointer-events-auto w-full rounded px-2 py-1 text-black outline-none outline-2 outline-offset-2 focus-visible:outline-gray-200  ${
                     errorMessage
                       ? "border-2 border-solid border-red-500 focus-visible:outline-none focus-visible:outline-red-500"
                       : ""

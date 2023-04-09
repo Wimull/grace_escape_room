@@ -56,23 +56,29 @@ import ImageCard from "../components/ImageCard";
   </body>
 </html>
 <style>
-  body {
+  :root {
+    --background-width: 7680px;
+  }
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: var(--background-width);
     background-image: url("/images/background.png");
     background-size: cover;
     background-repeat: no-repeat;
-    animation: translateBackground 30s linear alternate infinite;
+    animation: translateBackground 15s linear infinite;
   }
   @keyframes translateBackground {
     0% {
-      background-position: 0 0;
+      transform: translateX(0);
       backdrop-filter: brightness(1);
     }
     50% {
-      background-position: 50% 0;
       backdrop-filter: brightness(1.75);
     }
     100% {
-      background-position: 100% 0;
+      transform: translateX(calc(var(--background-width) / 2 * -1));
       backdrop-filter: brightness(1);
     }
   }
