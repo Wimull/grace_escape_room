@@ -181,7 +181,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
           initial={{
             filter: initialFilter,
           }}
-          className="text absolute inset-0 -z-10 m-auto flex  items-center justify-center object-cover"
+          className="text absolute inset-0 -z-10 m-auto flex  items-center justify-center object-contain"
         >
           {children}
         </motion.button>

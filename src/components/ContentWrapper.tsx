@@ -31,7 +31,7 @@ const wrapper: Variants = {
 };
 type ContentWrapperProps = HTMLMotionProps<"div"> & {
   children?: React.ReactNode;
-  images: string[];
+  images: { src: string; alt: string }[];
   cardsContent: {
     password: string;
     keyword: string;
@@ -53,7 +53,7 @@ const ContentWrapper: React.FC<ContentWrapperProps> = ({
         initial="hidden"
         animate="visible"
       >
-        {images.map((image, index) => (
+        {images.map(({ src, alt }, index) => (
           <ImageCard
             key={index}
             password={cardsContent[index].password}
@@ -65,9 +65,9 @@ const ContentWrapper: React.FC<ContentWrapperProps> = ({
             transition={{ duration: 0.25, ease: "easeInOut" }}
           >
             <img
-              src={image}
-              className="h-full w-full object-contain"
-              alt=""
+              src={src}
+              className="h-full w-full object-cover"
+              alt={alt}
               width={380}
               height={240}
             />
