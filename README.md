@@ -1,13 +1,16 @@
-# Astro with Tailwind
+# Grace Escape Room 2023
 
-```
-npm create astro@latest -- --template with-tailwindcss
-```
+Site usado para o evento de escape room de 2023, organizado pela GRACE da EACH USP.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/with-tailwindcss/devcontainer.json)
+Disponível em: https://grace-escape-room-2023.vercel.app/
 
-Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
+Projeto feito com [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), [React](https://reactjs.org/) e [Framer Motion](https://framer.com/motion/).
 
-For complete setup instructions, please see our [Tailwind Integration Guide](https://docs.astro.build/en/guides/integrations-guide/tailwind).
+## Como rodar localmente
+
+1. Instale o [Node.js](https://nodejs.org/en/download/).
+   1.1. Se preferir, instale o [pnpm](https://pnpm.io/installation) para instalar as dependências mais rapidamente.
+2. Instale os pacotes do projeto com `npm install`, ou se tiver pnpm instalado, `pnpm install`.
+3. Execute o projeto com `npm run dev` ou `npm run start`, ou se tiver pnpm instalado, `pnpm run dev` ou `pnpm run start`.
+4. Para gerar o site estático, execute `npm run build`, ou se tiver pnpm instalado, `pnpm run build`.
+5. Para visualizar o site estático, execute `npm run serve`, ou se tiver pnpm instalado, `pnpm run serve`.
