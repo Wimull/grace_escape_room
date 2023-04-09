@@ -7,7 +7,7 @@ import {
 } from "framer-motion";
 type ImageCardProps = HTMLMotionProps<"div"> & {
   children?: React.ReactNode;
-  password: string;
+  password: string | string[];
   keyword: string;
   cardTitle: string;
 };
@@ -31,7 +31,7 @@ const cardVariants: Variants = {
   },
 };
 const initialFilter = "blur(0) brightness(1) saturate(1)";
-const finalFilter = "blur(15px) brightness(0.3) saturate(0.2)";
+const finalFilter = "blur(15px) brightness(0.4) saturate(0.6)";
 const imageVariants: Variants = {
   imageShown: {
     filter: [finalFilter, initialFilter, initialFilter, initialFilter],
@@ -73,8 +73,14 @@ const ImageCard: React.FC<ImageCardProps> = ({
   const handleGuessPassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
-      passwordInput.current?.value.toLocaleLowerCase() ===
-      password.toLocaleLowerCase()
+      typeof password === "string"
+        ? passwordInput.current?.value.toLocaleLowerCase("pt-BR") ===
+          password.toLocaleLowerCase("pt-BR")
+        : password.some(
+            (pass) =>
+              pass.toLocaleLowerCase("pt-BR") ===
+              passwordInput.current?.value.toLocaleLowerCase("pt-BR")
+          )
     ) {
       setIsPasswordCracked(true);
     } else {
@@ -97,7 +103,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
       >
         <AnimatePresence mode="sync">
           {!!isImageSelected && !!isPasswordCracked ? (
-            <motion.span
+            <motion.div
               key="Password-Cracked"
               initial={{
                 translateX: "100%",
@@ -117,10 +123,13 @@ const ImageCard: React.FC<ImageCardProps> = ({
                 duration: 0.5,
                 times: [0, 0.5, 0.5, 1],
               }}
-              className=" absolute inset-0 z-10 m-auto flex h-min w-full flex-col items-center justify-center text-5xl"
+              className="pointer-events-none absolute inset-0 z-10 m-auto flex h-full w-full flex-col items-center justify-center text-5xl"
             >
-              {keyword}
-            </motion.span>
+              <span className="absolute top-4 left-0 right-0 row-span-1 m-auto flex justify-center justify-self-start text-3xl font-normal ">
+                {cardTitle}
+              </span>
+              <span className="text-9xl font-bold">{keyword}</span>
+            </motion.div>
           ) : !!isImageSelected ? (
             <motion.div
               key="Enter-Password"
@@ -144,7 +153,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
               }}
               className="pointer-events-none absolute inset-0 m-auto grid h-full w-full grid-rows-4 items-center justify-center gap-16 py-4 text-2xl font-semibold"
             >
-              <span className="row-span-1 m-auto flex justify-center justify-self-start text-4xl">
+              <span className="row-span-1 m-auto flex justify-center justify-self-start text-3xl font-normal">
                 {cardTitle}
               </span>
               <form
