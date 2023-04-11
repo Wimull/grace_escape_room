@@ -7,7 +7,7 @@ import {
 } from "framer-motion";
 type ImageCardProps = HTMLMotionProps<"div"> & {
   children?: React.ReactNode;
-  password: string | string[];
+  passwordKey: 0 | 1 | 2 | 3;
   keyword: string;
   cardTitle: string;
 };
@@ -51,9 +51,14 @@ const imageVariants: Variants = {
     },
   },
 };
-
+const passwordValues = [
+  import.meta.env.PUBLIC_DESAFIO_1,
+  import.meta.env.PUBLIC_DESAFIO_2,
+  import.meta.env.PUBLIC_DESAFIO_3,
+  import.meta.env.PUBLIC_DESAFIO_4,
+];
 const ImageCard: React.FC<ImageCardProps> = ({
-  password,
+  passwordKey,
   cardTitle,
   keyword,
   children,
@@ -72,15 +77,16 @@ const ImageCard: React.FC<ImageCardProps> = ({
 
   const handleGuessPassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const password = (passwordValues[passwordKey] as string)
+      .toLocaleLowerCase("pt-BR")
+      .split(",");
     if (
-      typeof password === "string"
-        ? passwordInput.current?.value.toLocaleLowerCase("pt-BR") ===
-          password.toLocaleLowerCase("pt-BR")
-        : password.some(
-            (pass) =>
-              pass.toLocaleLowerCase("pt-BR") ===
-              passwordInput.current?.value.toLocaleLowerCase("pt-BR")
-          )
+      password.some(
+        (pass) =>
+          pass.toLocaleLowerCase("pt-BR") ===
+          passwordInput.current?.value.toLocaleLowerCase("pt-BR")
+      )
     ) {
       setIsPasswordCracked(true);
     } else {
@@ -148,28 +154,37 @@ const ImageCard: React.FC<ImageCardProps> = ({
                 duration: 0.5,
                 times: [0, 0.5, 0.5, 1],
               }}
-              className="pointer-events-none absolute inset-0 m-auto grid h-full w-full grid-rows-4 items-center justify-center gap-16 py-4 text-2xl font-semibold"
+              className="pointer-events-none absolute inset-0 m-auto grid h-full w-full grid-rows-4 items-center justify-center gap-16 py-4 
+              text-xl font-semibold lg:text-2xl"
             >
               <span className="row-span-1 m-auto flex justify-center justify-self-start text-3xl font-normal">
                 {cardTitle}
               </span>
               <form
                 onSubmit={(e) => handleGuessPassword(e)}
-                className="pointer-events-none absolute inset-0 top-8 row-span-3 m-auto flex flex-col items-center justify-center gap-4 self-start px-16 "
+                className="pointer-events-none absolute inset-0 top-8 row-span-3 m-auto flex flex-col items-center justify-center gap-4 self-start px-4 lg:px-16 "
               >
                 <label htmlFor={`${id}-input`} className="pointer-events-auto">
                   Digite a Palavra Chave
                 </label>
-                <input
-                  id={`${id}-input`}
-                  type="text"
-                  ref={passwordInput}
-                  className={`pointer-events-auto w-full rounded px-2 py-1 text-black outline-none outline-2 outline-offset-2 focus-visible:outline-gray-200  ${
-                    errorMessage
-                      ? "border-2 border-solid border-red-500 focus-visible:outline-none focus-visible:outline-red-500"
-                      : ""
-                  }}`}
-                />
+                <div className="pointer-events-auto flex w-full justify-center gap-4 rounded px-2 py-1 align-middle">
+                  <input
+                    id={`${id}-input`}
+                    type="text"
+                    ref={passwordInput}
+                    className={`pointer-events-auto w-full rounded px-2 py-1 text-black outline-none outline-2 outline-offset-2 focus-visible:outline-gray-200  ${
+                      errorMessage
+                        ? "border-2 border-solid border-red-500 focus-visible:outline-none focus-visible:outline-red-500"
+                        : ""
+                    }}`}
+                  />
+                  <button
+                    type="submit"
+                    className="pointer-events-all flex aspect-square h-full items-center text-2xl text-white"
+                  >
+                    &#10148;
+                  </button>
+                </div>
                 <span className="-mt-2 min-h-[24px] self-start text-base text-red-500">
                   {errorMessage}
                 </span>
