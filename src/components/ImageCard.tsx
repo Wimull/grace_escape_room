@@ -8,7 +8,7 @@ import {
 type ImageCardProps = HTMLMotionProps<"div"> & {
   children?: React.ReactNode;
   passwordKey: 0 | 1 | 2 | 3;
-  keyword: string;
+
   cardTitle: string;
 };
 
@@ -57,10 +57,16 @@ const passwordValues = [
   import.meta.env.PUBLIC_DESAFIO_3,
   import.meta.env.PUBLIC_DESAFIO_4,
 ];
+const keywordValues = [
+  import.meta.env.PUBLIC_RESPOSTA_1,
+  import.meta.env.PUBLIC_RESPOSTA_2,
+  import.meta.env.PUBLIC_RESPOSTA_3,
+  import.meta.env.PUBLIC_RESPOSTA_4,
+];
 const ImageCard: React.FC<ImageCardProps> = ({
   passwordKey,
   cardTitle,
-  keyword,
+
   children,
   ...props
 }) => {
@@ -70,6 +76,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
 
   const passwordInput = useRef<HTMLInputElement>(null);
   const id = useId();
+  const keyword = keywordValues[passwordKey];
 
   const handleImageClick = () => {
     setIsImageSelected((prev) => !prev);

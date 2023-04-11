@@ -34,7 +34,6 @@ type ContentWrapperProps = HTMLMotionProps<"div"> & {
   images: { src: string; alt: string }[];
   cardsContent: {
     passwordKey: 0 | 1 | 2 | 3;
-    keyword: string;
   }[];
 };
 
@@ -57,7 +56,6 @@ const ContentWrapper: React.FC<ContentWrapperProps> = ({
           <ImageCard
             key={index}
             passwordKey={cardsContent[index].passwordKey}
-            keyword={cardsContent[index].keyword}
             cardTitle={`${index + 1}º`}
             custom={index}
             variants={initialCard}
