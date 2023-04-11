@@ -53,16 +53,25 @@ import ImageCard from "../components/ImageCard";
         },
       ]}
     />
+    <div class="background-wrapper">
+      <div class="background"></div>
+    </div>
   </body>
 </html>
 <style>
   :root {
     --background-width: 7680px;
   }
-  body::before {
-    content: "";
+  .background-wrapper {
     position: absolute;
     inset: 0;
+    overflow: hidden;
+    max-width: 100vw;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .background {
+    height: 100%;
     width: var(--background-width);
     background-image: url("/images/background.png");
     background-size: cover;

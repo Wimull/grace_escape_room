@@ -94,11 +94,8 @@ const ImageCard: React.FC<ImageCardProps> = ({
       <motion.div
         animate={isImageSelected ? "contentShown" : "imageShown"}
         variants={cardVariants}
-        style={{
-          width: "min(80vw, 480px)",
-        }}
         className={
-          "aspect-w-3 aspect-h-2 relative isolate m-4 flex h-[320px] max-h-[320px]  max-w-[480px] overflow-hidden rounded-xl border-none border-gray-800 bg-gray-400 bg-opacity-10 p-4 text-white shadow-2xl"
+          "relative isolate m-4 flex aspect-[14/10] max-h-[320px] w-[80vw]  max-w-[520px]  overflow-hidden rounded-xl border-none border-gray-800 bg-gray-400 bg-opacity-10 p-4 text-white shadow-2xl lg:w-[40vw]"
         }
       >
         <AnimatePresence mode="sync">

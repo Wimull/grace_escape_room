@@ -48,7 +48,7 @@ const ContentWrapper: React.FC<ContentWrapperProps> = ({
     <MotionConfig reducedMotion={"user"}>
       <motion.div
         {...props}
-        className=" grid h-fit grid-cols-1 place-items-center content-center gap-8  lg:grid-cols-2 lg:grid-rows-2 lg:gap-24"
+        className="grid h-fit max-h-screen min-w-full grid-cols-1 place-items-center justify-center gap-8 overflow-y-auto overflow-x-hidden lg:absolute lg:grid-cols-[repeat(2,min-content)] lg:grid-rows-2 lg:gap-[6rem_6rem] lg:overflow-hidden lg:px-48 xl:gap-[6rem_10rem] "
         variants={wrapper}
         initial="hidden"
         animate="visible"
