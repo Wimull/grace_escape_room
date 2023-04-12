@@ -8,7 +8,7 @@ import {
 type ImageCardProps = HTMLMotionProps<"div"> & {
   children?: React.ReactNode;
   passwordKey: 0 | 1 | 2 | 3;
-
+  onSuccessfullGuess: () => void;
   cardTitle: string;
 };
 
@@ -57,16 +57,11 @@ const passwordValues = [
   import.meta.env.PUBLIC_DESAFIO_3,
   import.meta.env.PUBLIC_DESAFIO_4,
 ];
-const keywordValues = [
-  import.meta.env.PUBLIC_RESPOSTA_1,
-  import.meta.env.PUBLIC_RESPOSTA_2,
-  import.meta.env.PUBLIC_RESPOSTA_3,
-  import.meta.env.PUBLIC_RESPOSTA_4,
-];
+
 const ImageCard: React.FC<ImageCardProps> = ({
   passwordKey,
   cardTitle,
-
+  onSuccessfullGuess,
   children,
   ...props
 }) => {
@@ -76,7 +71,6 @@ const ImageCard: React.FC<ImageCardProps> = ({
 
   const passwordInput = useRef<HTMLInputElement>(null);
   const id = useId();
-  const keyword = keywordValues[passwordKey];
 
   const handleImageClick = () => {
     setIsImageSelected((prev) => !prev);
@@ -96,6 +90,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
       )
     ) {
       setIsPasswordCracked(true);
+      onSuccessfullGuess();
     } else {
       setErrorMessage("Senha Incorreta");
       passwordInput.current?.focus();
@@ -135,10 +130,13 @@ const ImageCard: React.FC<ImageCardProps> = ({
               }}
               className="pointer-events-none absolute inset-0 z-10 m-auto flex h-full w-full flex-col items-center justify-center text-5xl"
             >
-              <span className="absolute top-4 left-0 right-0 row-span-1 m-auto flex justify-center justify-self-start text-3xl font-normal ">
-                {cardTitle}
+              <span className="text-9xl font-bold">
+                {
+                  //q: what is the html char for correct answer
+                  //a:
+                }
+                &#10004;
               </span>
-              <span className="text-9xl font-bold">{keyword}</span>
             </motion.div>
           ) : !!isImageSelected ? (
             <motion.div
